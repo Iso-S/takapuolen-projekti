@@ -10,6 +10,6 @@ public class BookController {
     @GetMapping("/index")
     public String Index() {
 
-        return "index";
+        return "frontpage";
     }
 }
