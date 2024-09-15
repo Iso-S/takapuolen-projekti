@@ -1,11 +1,22 @@
 package os.sa.takapuolenprojekti.domain;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.GenerationType;
+@Entity
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String title;
     private String author;
     private int publicationYear;
     private String isbn;
     private String price;
+
+    public Book() {
+       
+    }
 
     public Book(String title, String author, int publicationYear, String isbn, String price) {
         this.title = title;
@@ -13,14 +24,6 @@ public class Book {
         this.publicationYear = publicationYear;
         this.isbn = isbn;
         this.price = price;
-    }
-
-    public Book() {
-        this.title = null;
-        this.author = null;
-        this.publicationYear = 0;
-        this.isbn = null;
-        this.price = null;
     }
 
     public String getTitle() {
