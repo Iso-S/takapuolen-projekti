@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Category list</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>ID</th>
+        </tr>
+        <tr th:each="category : ${categories}">
+            <td th:text="${category.name}"></td>
+            <td th:text="${category.categoryid}"></td>
+            <td><a class="btn btn-danger" th:href="@{/deletecategory/{id}(id=${category.categoryid})}">Delete</a></td>
+        </tr>
+    </table>
+</body>
+</html>
