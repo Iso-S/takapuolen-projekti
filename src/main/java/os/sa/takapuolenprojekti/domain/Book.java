@@ -2,6 +2,8 @@ package os.sa.takapuolenprojekti.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.GenerationType;
 @Entity
 public class Book {
@@ -13,6 +15,10 @@ public class Book {
     private int publicationYear;
     private String isbn;
     private String price;
+
+    @ManyToOne
+    @JoinColumn(name = "categoryid")
+    private Category category;
 
     public Book() {
     }
@@ -71,6 +77,14 @@ public class Book {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
