@@ -23,27 +23,27 @@ public class TakapuolenprojektiApplication {
 	@Bean
 	public CommandLineRunner demo(BookRepository repository, CategoryRepository crepository) {
 		return (args) -> {
-			log.info("Muutama testikirja");
-			Book b = new Book("Harry Potter ja viisasten kivi", "J.K Rowling", 2018, "9789520401801", "24,95");
-			Book c = new Book("Harry Potter ja salaisuuksien kammio", "J.K Rowling", 2021, "9789520433543", "32,95");
-			Book d = new Book("Harry Potter ja Feeniksin kilta (kuvitettu)", "J.K Rowling", 2022, "9789513187064", "36,95");
-
 			log.info("Muutama testikategoria");
 			Category category1 = new Category("Fantasia");
 			Category category2 = new Category("Kauhu");
 			Category category3 = new Category("Rikos");
 
-			repository.save(b);
-			repository.save(c);
-			repository.save(d);
-
 			crepository.save(category1);
 			crepository.save(category2);
 			crepository.save(category3);
 
+			repository.save(new Book("Harry Potter ja viisasten kivi", "J.K. Rowling", 1997, "9789510316893", "20,00", category1));
+			repository.save(new Book("Harry Potter ja salaisuuksien kammio", "J.K. Rowling", 1998, "9789510316909", "20,00", category1));
+			repository.save(new Book("Harry Potter ja Azkabanin vanki", "J.K. Rowling", 1999, "9789510316916", "20,00", category1));
+
 			log.info("Luodut kategoriat:");
 			for (Category category : crepository.findAll()) {
 				log.info(category.toString());
+			}
+
+			log.info("Luodut kirjat:");
+			for (Book book : repository.findAll()) {
+				log.info(book.toString());
 			}
 		};
 

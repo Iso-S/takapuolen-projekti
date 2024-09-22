@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import os.sa.takapuolenprojekti.domain.Book;
 import os.sa.takapuolenprojekti.domain.BookRepository;
+import os.sa.takapuolenprojekti.domain.CategoryRepository;
 
 
 @Controller
@@ -16,9 +17,13 @@ public class BookController {
     @Autowired
     private BookRepository repository;
 
+    @Autowired
+    private CategoryRepository crepository;
+
     @GetMapping("/newbook")
     public String newBook(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("categories", crepository.findAll());
         //localhost:8080/newbook
 
         return "newbook";
