@@ -20,6 +20,11 @@ public class BookController {
     @Autowired
     private CategoryRepository crepository;
 
+    @GetMapping("/login")
+    public String Login() {
+        return "login";
+    }
+
     @GetMapping("/newbook")
     public String newBook(Model model) {
         model.addAttribute("book", new Book());
@@ -57,6 +62,7 @@ public class BookController {
 
         return "booklist";
     }
+
 }
 
 //http://localhost:8080/h2-console

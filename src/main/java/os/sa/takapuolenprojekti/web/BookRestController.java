@@ -6,8 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import os.sa.takapuolenprojekti.domain.Book;
@@ -26,15 +24,14 @@ public class BookRestController {
     @Autowired
     private CategoryRepository crepository;
 
-    @RequestMapping(value="/books", method = RequestMethod.GET)
-        public @ResponseBody List<Book> studentListRest() {
+    @GetMapping("/books")
+        public @ResponseBody List<Book> studentListRest() { //localhost:8080/books
         return (List<Book>) repository.findAll();
     }
 
-    @RequestMapping(value="/books/{id}", method = RequestMethod.GET)
+    @GetMapping("/books/{id}")
         public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) {
     	return repository.findById(bookId);
     }
     
-
 }
