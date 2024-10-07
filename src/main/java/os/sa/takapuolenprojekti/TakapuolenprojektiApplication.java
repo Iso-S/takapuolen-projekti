@@ -11,6 +11,8 @@ import os.sa.takapuolenprojekti.domain.Book;
 import os.sa.takapuolenprojekti.domain.BookRepository;
 import os.sa.takapuolenprojekti.domain.Category;
 import os.sa.takapuolenprojekti.domain.CategoryRepository;
+import os.sa.takapuolenprojekti.domain.User;
+import os.sa.takapuolenprojekti.domain.UserRepository;
 
 @SpringBootApplication
 public class TakapuolenprojektiApplication {
@@ -21,7 +23,7 @@ public class TakapuolenprojektiApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository repository, CategoryRepository crepository) {
+	public CommandLineRunner demo(BookRepository repository, CategoryRepository crepository, UserRepository urepository) {
 		return (args) -> {
 			log.info("Muutama testikategoria");
 			Category category1 = new Category("Fantasia");
@@ -36,17 +38,11 @@ public class TakapuolenprojektiApplication {
 			repository.save(new Book("Harry Potter ja salaisuuksien kammio", "J.K. Rowling", 1998, "9789510316909", "20,00", category1));
 			repository.save(new Book("Harry Potter ja Azkabanin vanki", "J.K. Rowling", 1999, "9789510316916", "20,00", category1));
 
-			log.info("Luodut kategoriat:");
-			for (Category category : crepository.findAll()) {
-				log.info(category.toString());
-			}
-
-			log.info("Luodut kirjat:");
-			for (Book book : repository.findAll()) {
-				log.info(book.toString());
-			}
+			User user1 = new User ("user", "$2a$10$nAckPIKVHRpUm8Ilk6JkQe7/Rk6UddaGzYKDN.h7z.45T2BIFjpju", "USER", "user@gotmail.net");
+			User user2 = new User ("admin", "$2a$10$nAckPIKVHRpUm8Ilk6JkQe7/Rk6UddaGzYKDN.h7z.45T2BIFjpju", "ADMIN", "test@email.com");
+			
+			urepository.save(user1);
+			urepository.save(user2);
 		};
-
 	}
-
 }

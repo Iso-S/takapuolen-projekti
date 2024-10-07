@@ -20,11 +20,6 @@ public class BookController {
     @Autowired
     private CategoryRepository crepository;
 
-    @GetMapping("/login")
-    public String Login() {
-        return "login";
-    }
-
     @GetMapping("/newbook")
     public String newBook(Model model) {
         model.addAttribute("book", new Book());
